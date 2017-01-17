@@ -1,0 +1,48 @@
+//
+//  MainPCH.pch
+//  QunBao
+//
+//  Created by fujunzhi on 16/1/5.
+//  Copyright © 2016年 QunBao. All rights reserved.
+//
+
+#ifndef MainPCH_pch
+#define MainPCH_pch
+#import "MainSingleton.h"
+
+
+//单例
+#define kMainSingleton [MainSingleton defaultSingleton]
+
+
+//屏幕高度
+#define kScreenHeight MAX([UIScreen mainScreen].bounds.size.width, \
+[UIScreen mainScreen].bounds.size.height)
+//屏幕宽度
+#define kScreenWidth  MIN([UIScreen mainScreen].bounds.size.width, \
+[UIScreen mainScreen].bounds.size.height)
+
+//颜色
+#define color(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
+//程序主颜色
+#define kNavColor [kMainSingleton colorWithHexString:@"#7857e1" alpha:1]
+
+//G－C－D
+#define DispatchAsync(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define DispatchSync(block) dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define DispatchMain(block) dispatch_async(dispatch_get_main_queue(),block)
+
+//主界面隐藏tabbar通知
+#define SHOULD_HIDE_MAIN_TABBAR             @"should hide main tabbar"
+//主界面显示tabbar通知
+#define SHOULD_SHOW_MAIN_TABBAR             @"should show main tabbar"
+
+
+#endif /* MainPCH_pch */
+
+
+
+
+
+
+

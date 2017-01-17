@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>people_icon</string>
+			<key>title</key>
+			<string>王老板</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>change_pw</string>
+			<key>title</key>
+			<string>修改密码</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>change_cc</string>
+			<key>title</key>
+			<string>修改名片</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>collect</string>
+			<key>title</key>
+			<string>我的收藏</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>release</string>
+			<key>title</key>
+			<string>我的发布</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>secretary_set</string>
+			<key>title</key>
+			<string>秘书设置</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>message</string>
+			<key>title</key>
+			<string>系统消息</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>system_set</string>
+			<key>title</key>
+			<string>系统设置</string>
+		</dict>
+	</array>
+</array>
+</plist>

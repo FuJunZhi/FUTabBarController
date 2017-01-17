@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1912" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="81" id="KGk-i7-Jjw" customClass="MineColumnCell">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u6t-Bj-zBM">
+                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="u6t-Bj-zBM" secondAttribute="height" multiplier="1:1" id="Jf3-CQ-YGI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdm-qT-RWc">
+                        <rect key="frame" x="90" y="23" width="228" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="BX8-vP-LHI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 671 Copy 3.png" translatesAutoresizingMaskIntoConstraints="NO" id="x9R-JD-Vzm">
+                        <rect key="frame" x="377" y="30" width="10" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="x9R-JD-Vzm" secondAttribute="height" multiplier="1:1" constant="-10" id="AY0-5X-PGw"/>
+                            <constraint firstAttribute="height" constant="20" id="OCe-tR-EcV"/>
+                        </constraints>
+                    </imageView>
+                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gT9-Qy-KQL">
+                        <rect key="frame" x="338" y="24" width="51" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="3ri-0u-hCV"/>
+                            <constraint firstAttribute="height" constant="31" id="vd8-jy-5Hg"/>
+                        </constraints>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="x9R-JD-Vzm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3V4-LO-6JF"/>
+                    <constraint firstItem="gT9-Qy-KQL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Cn1-wH-oT3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="x9R-JD-Vzm" secondAttribute="trailing" constant="7" id="FYT-XH-cqC"/>
+                    <constraint firstItem="u6t-Bj-zBM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Gld-RK-5Np"/>
+                    <constraint firstItem="u6t-Bj-zBM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="Pb2-OK-ANK"/>
+                    <constraint firstItem="Fdm-qT-RWc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RU7-lg-5ap"/>
+                    <constraint firstItem="Fdm-qT-RWc" firstAttribute="leading" secondItem="u6t-Bj-zBM" secondAttribute="trailing" constant="20" id="WnE-KF-DJv"/>
+                    <constraint firstItem="x9R-JD-Vzm" firstAttribute="leading" secondItem="Fdm-qT-RWc" secondAttribute="trailing" constant="59" id="fg8-wc-loS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gT9-Qy-KQL" secondAttribute="trailing" constant="7" id="hIS-Mz-la5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="u6t-Bj-zBM" secondAttribute="bottom" constant="11" id="xYe-0m-Okt"/>
+            </constraints>
+            <connections>
+                <outlet property="arrowImageView" destination="x9R-JD-Vzm" id="OZk-Qi-liA"/>
+                <outlet property="iconImageView" destination="u6t-Bj-zBM" id="oEe-x3-XJp"/>
+                <outlet property="switchView" destination="gT9-Qy-KQL" id="tl3-Xc-0si"/>
+                <outlet property="titleLabel" destination="Fdm-qT-RWc" id="mmv-uO-cME"/>
+            </connections>
+            <point key="canvasLocation" x="455" y="229.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Rectangle 671 Copy 3.png" width="24" height="42"/>
+    </resources>
+</document>

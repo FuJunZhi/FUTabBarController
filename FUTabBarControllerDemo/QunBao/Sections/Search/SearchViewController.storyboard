@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1912" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Main Nav Controller-->
+        <scene sceneID="ofg-3P-7ak">
+            <objects>
+                <navigationController id="iOc-Xa-t4J" customClass="MainNavController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FQb-Vm-oOz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="l2u-zv-jt9" kind="relationship" relationship="rootViewController" id="crq-Hs-2qa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0S8-vc-GIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-680" y="-235"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="jBn-D5-ukh">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="l2u-zv-jt9" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xNd-Tx-HHQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="uG2-si-GbA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LuY-OE-rDK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-7D-Zms">
+                                <rect key="frame" x="250" y="275" width="100" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="lWK-oI-Pgh"/>
+                                    <constraint firstAttribute="height" constant="50" id="lYF-sV-axi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i4w-7D-Zms" firstAttribute="centerX" secondItem="LuY-OE-rDK" secondAttribute="centerX" id="Vpq-AD-Amu"/>
+                            <constraint firstItem="i4w-7D-Zms" firstAttribute="centerY" secondItem="LuY-OE-rDK" secondAttribute="centerY" id="cGi-Bk-OWC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DjZ-D3-kj7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="gO2-WA-niM">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backClick:" destination="l2u-zv-jt9" id="Frd-Ye-ypU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ByD-od-jl0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-27" y="-235"/>
+        </scene>
+    </scenes>
+</document>

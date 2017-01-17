@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1912" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Main Nav Controller-->
+        <scene sceneID="bRo-sh-SDQ">
+            <objects>
+                <navigationController id="8vP-56-EcR" customClass="MainNavController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vfe-hp-Jvo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Jmz-RS-bgO" kind="relationship" relationship="rootViewController" id="dGi-3K-WQ4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYO-cG-JUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-621" y="162"/>
+        </scene>
+        <!--Trends View Controller-->
+        <scene sceneID="AtY-GG-428">
+            <objects>
+                <viewController storyboardIdentifier="TrendsViewController" id="Jmz-RS-bgO" customClass="TrendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y9O-yF-U8b"/>
+                        <viewControllerLayoutGuide type="bottom" id="miK-Qi-eeL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tvo-pO-YJD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qz-8M-va6">
+                                <rect key="frame" x="250" y="275" width="100" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mKH-ue-qPu"/>
+                                    <constraint firstAttribute="width" constant="100" id="uSk-DV-fcx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Qz-8M-va6" firstAttribute="centerY" secondItem="tvo-pO-YJD" secondAttribute="centerY" id="dcf-O8-0kJ"/>
+                            <constraint firstItem="8Qz-8M-va6" firstAttribute="centerX" secondItem="tvo-pO-YJD" secondAttribute="centerX" id="rbT-al-aV5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="x7e-yX-p5K">
+                        <barButtonItem key="rightBarButtonItem" title="切换标签" id="grJ-i7-wBj">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="aaaa:" destination="Jmz-RS-bgO" id="tHo-hP-bc4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r0w-53-14r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="162"/>
+        </scene>
+    </scenes>
+</document>
