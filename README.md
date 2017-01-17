@@ -20,12 +20,12 @@
 /**
 *  初始化一个子控制器
 *
-*  @param childVc           需要初始化的子控制器
-*  @param childVc           导航控制器
-*  @param title             标题
-*  @param imageName         图标
-*  @param selectedImageName 选中的图标
-*  @param selectedImageName 是否突出偏移
+*  @param childVc               需要初始化的子控制器
+*  @param navigationController  导航控制器
+*  @param title                 标题
+*  @param imageName             图标
+*  @param selectedImageName     选中的图标
+*  @param offset                是否凸出（YES：按钮向上凸出）
 */
 - (UIViewController *)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset;
 @end
@@ -59,7 +59,8 @@ UIViewController *mineNVC = [self setupChildViewController:mineVC navigationCont
 
 self.viewControllers = @[trendsNVC, callingCardNVC, baoXinNVC, mineNVC];
 
-//添加中心按钮
+//添加中心按钮（只适用于中心按钮模态弹出）
+//offset:是否凸出
 __weak typeof(self) weakSelf = self;
 [self addCenterItemWithIcon:@"search_nomal" selectedIcon:@"search_nomal" title:@"搜索" offset:YES clickBlock:^{
 UIStoryboard *board = [UIStoryboard storyboardWithName:@"SearchViewController" bundle:nil];
