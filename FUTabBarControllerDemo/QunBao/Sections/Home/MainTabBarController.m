@@ -49,7 +49,10 @@
     MineViewController *mineVC = [mineStB instantiateViewControllerWithIdentifier:@"MineViewController"];
     UIViewController *mineNVC = [self setupChildViewController:mineVC navigationController:[MainNavController class] title:@"我的" imageName:@"mine_nomal.png" selectedImageName:@"mine_select.png" offset:NO];
     
+    //添加的是导航控制器
     self.viewControllers = @[trendsNVC, callingCardNVC, baoXinNVC, mineNVC];
+    //添加动画
+//    self.selectAnimation = TabBarSelectAnimationScale;
     
     //添加中心按钮
     __weak typeof(self) weakSelf = self;

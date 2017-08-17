@@ -1,22 +1,41 @@
 # FUTabBarController
 *Custom FUTabBarController
+包括功能：选中按钮动画（缩放／旋转）、选中字体可以改变大小颜色、所有按钮都可以凸起、自定义push/模态跳转、角标的自定义
 
 
 ### CocoaPods
 
-  1. Add `pod 'FUTabBarController', '~> 1.0.0'` to your Podfile.
+  1. Add `pod 'FUTabBarController', '~> 2.0.0'` to your Podfile.
 
   2. Run `pod install` or `pod update`.
 
   3. 创建UITabBarController自定义类 继承FUTabBarController
   4. 具体实现可以看demo`Home->MainTabBarController.m`
 
+### 带动画的效果图
+<img src="http://i2.bvimg.com/606664/112328df5cbe8bb9.gif" width="30%" height="30%">
+<img src="http://i2.bvimg.com/606664/28311dd96b554409.gif" width="30%" height="30%">
 
-#父类中提供的方法
+### 有标题 + 凸出
+<img src="http://p1.bqimg.com/1949/115761d623008b5a.png" width="30%" height="30%">
+### 无标题 + 凸出
+<img src="http://p1.bqimg.com/1949/fa8b0df53bf311f9.png" width="30%" height="30%">
+### 有标题 + 不凸出
+<img src="http://p1.bqimg.com/1949/d940e83b61a32eed.png" width="30%" height="30%">
+### 无标题 + 不凸出
+<img src="http://p1.bqimg.com/1949/0603d24e7556c4ba.png" width="30%" height="30%">
+
+
+### 父类中提供的方法
 ## <a id="initialize"></a>
 ```objc
-//添加中心按钮：模态...（子类调用）
-- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block;
+/**
+* TabBarSelectAnimationDefault = 0, //无动画
+* TabBarSelectAnimationScale,       //缩放动画
+* TabBarSelectAnimationRotate       //旋转动画 
+*/
+@property (nonatomic, assign) TabBarSelectAnimation selectAnimation;
+
 /**
 *  初始化一个子控制器
 *
@@ -28,6 +47,9 @@
 *  @param offset                是否凸出（YES：按钮向上凸出）
 */
 - (UIViewController *)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset;
+
+//添加中心按钮：模态...（子类调用）
+- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block;
 @end
 ```
 
@@ -75,12 +97,3 @@ UIViewController *searchNVC = [weakSelf setupChildViewController:searchVC naviga
 
 @end
 ```
-
-### 有标题 + 凸出
-<img src="http://p1.bqimg.com/1949/115761d623008b5a.png" width="30%" height="30%">
-### 无标题 + 凸出
-<img src="http://p1.bqimg.com/1949/fa8b0df53bf311f9.png" width="30%" height="30%">
-### 有标题 + 不凸出
-<img src="http://p1.bqimg.com/1949/d940e83b61a32eed.png" width="30%" height="30%">
-### 无标题 + 不凸出
-<img src="http://p1.bqimg.com/1949/0603d24e7556c4ba.png" width="30%" height="30%">

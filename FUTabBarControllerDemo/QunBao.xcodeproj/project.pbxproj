@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		403777031F456BB3009166C4 /* UIView+FU_Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 403777021F456BB3009166C4 /* UIView+FU_Animation.m */; };
 		CA6ADA291C3D00BA002B5733 /* btn_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADA271C3D00BA002B5733 /* btn_user@2x.png */; };
 		CA6ADA2A1C3D00BA002B5733 /* btn_user.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6ADA281C3D00BA002B5733 /* btn_user.png */; };
 		CA6ADA311C3D0B2D002B5733 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6ADA301C3D0B2D002B5733 /* LoginViewController.m */; };
@@ -96,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		403777011F456BB3009166C4 /* UIView+FU_Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FU_Animation.h"; sourceTree = "<group>"; };
+		403777021F456BB3009166C4 /* UIView+FU_Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FU_Animation.m"; sourceTree = "<group>"; };
 		CA6ADA271C3D00BA002B5733 /* btn_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_user@2x.png"; sourceTree = "<group>"; };
 		CA6ADA281C3D00BA002B5733 /* btn_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_user.png; sourceTree = "<group>"; };
 		CA6ADA2F1C3D0B2D002B5733 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -256,18 +259,20 @@
 				CA8F28CF1DCB2B88002E50B8 /* FUTabBarController.m */,
 				CA8F28C81DCB2B5C002E50B8 /* FUTabBar.h */,
 				CA8F28C91DCB2B5C002E50B8 /* FUTabBar.m */,
-				CA8B39671DCC5D5C000DDA78 /* FUBadgeButton.h */,
-				CA8B39681DCC5D5C000DDA78 /* FUBadgeButton.m */,
 				CA8F28CA1DCB2B5C002E50B8 /* FUTabBarButton.h */,
 				CA8F28CB1DCB2B5C002E50B8 /* FUTabBarButton.m */,
-				CA8B396A1DCC619A000DDA78 /* NSString+size.h */,
-				CA8B396B1DCC619A000DDA78 /* NSString+size.m */,
+				CA8B39671DCC5D5C000DDA78 /* FUBadgeButton.h */,
+				CA8B39681DCC5D5C000DDA78 /* FUBadgeButton.m */,
 				CA8B396D1DCC63B2000DDA78 /* UIImage+Extension.h */,
 				CA8B396E1DCC63B2000DDA78 /* UIImage+Extension.m */,
 				CA874E461E2DB1A90096D3DC /* UITabBarItem+Extension.h */,
 				CA874E471E2DB1A90096D3DC /* UITabBarItem+Extension.m */,
 				CA874E4C1E2DCBD30096D3DC /* UIView+TouchAreaInsets.h */,
 				CA874E4D1E2DCBD30096D3DC /* UIView+TouchAreaInsets.m */,
+				403777011F456BB3009166C4 /* UIView+FU_Animation.h */,
+				403777021F456BB3009166C4 /* UIView+FU_Animation.m */,
+				CA8B396A1DCC619A000DDA78 /* NSString+size.h */,
+				CA8B396B1DCC619A000DDA78 /* NSString+size.m */,
 			);
 			path = FUTabBarController;
 			sourceTree = "<group>";
@@ -769,6 +774,7 @@
 				CAC5C6631C3B791400423DBE /* UIView+Frame.m in Sources */,
 				CAC5C6691C3B89C600423DBE /* NSDictionary+NSNull.m in Sources */,
 				CA8F2EFF1C3CC39B003BED21 /* MineColumnCell.m in Sources */,
+				403777031F456BB3009166C4 /* UIView+FU_Animation.m in Sources */,
 				CAC5C6661C3B794E00423DBE /* NSString+Size.m in Sources */,
 				CA8B39691DCC5D5C000DDA78 /* FUBadgeButton.m in Sources */,
 				CA8F28CC1DCB2B5C002E50B8 /* FUTabBar.m in Sources */,

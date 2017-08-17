@@ -1,8 +1,8 @@
 //
-//  FUTabBarButton.h
+//  UIView+FU_Animation.m
 //  QunBao
 //
-//  Created by fujunzhi on 16/1/5.
+//  Created by FJZ on 2017/8/17.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,13 +23,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "UIView+FU_Animation.h"
 
-#define kTabBarButtonImageRatio 0.5
+@implementation UIView (FU_Animation)
+//缩放动画
+- (void)addScaleAnimation
+{
+    //需要实现的帧动画，这里根据需求自定义
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"transform.scale";
+    animation.values = @[@1.0,@1.3,@0.9,@1.15,@0.95,@1.02,@1.0];
+    animation.duration = 1;
+    animation.calculationMode = kCAAnimationCubic;
+    [self.layer addAnimation:animation forKey:nil];
+}
 
-@interface FUTabBarButton : UIButton
-/**
- *  赋值
- */
-@property (nonatomic, strong) UITabBarItem *item;
+
+//旋转动画
+- (void)addRotateAnimation
+{
+    [UIView animateWithDuration:0.32 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+    } completion:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.70 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.layer.transform = CATransform3DMakeRotation(2 * M_PI, 0, 1, 0);
+        } completion:nil];
+    });
+}
 @end

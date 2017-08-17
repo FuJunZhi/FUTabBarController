@@ -3,8 +3,25 @@
 //  QunBao
 //
 //  Created by fujunzhi on 16/1/5.
-//  Copyright © 2016年 FJZ. All rights reserved.
+//  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 #import "FUTabBar.h"
 #import "FUTabBarButton.h"
@@ -52,7 +69,7 @@
     plusItem.offset = offset;
     plusButton.item = plusItem;
     
-    plusButton.bounds = CGRectMake(0, 0, kCenterItemWidth, kSuperViewH + (offset ? kCenterBtnYOffset : 0));
+    plusButton.bounds = CGRectMake(0, 0, FUCenterItemWidth, FUSuperViewH + (offset ? FUCenterBtnYOffset : 0));
     [self addSubview:plusButton];
     self.plusButton = plusButton;
 }
@@ -94,9 +111,9 @@
 - (void)buttonClick:(FUTabBarButton *)button
 {
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(tabbar:didSelectedButtonFrom:to:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabbarAnimationView:didSelectedButtonFrom:to:)])
     {
-        [self.delegate tabbar:self didSelectedButtonFrom:self.selectedButton.tag to:button.tag];
+        [self.delegate tabbarAnimationView:button.imageView didSelectedButtonFrom:self.selectedButton.tag to:button.tag];
     }
     
     self.selectedButton.selected = NO;
@@ -134,7 +151,7 @@
 {
     [super layoutSubviews];
     
-    CGFloat buttonEvenW = kSuperViewW / self.subviews.count;
+    CGFloat buttonEvenW = FUSuperViewW / self.subviews.count;
     CGFloat buttonW,buttonY,buttonH;
     
     NSInteger tabBarButtonCount = self.tabBarButtons.count;
@@ -144,14 +161,14 @@
         //取出按钮
         FUTabBarButton *button = self.tabBarButtons[i];
         if (button.item.isOffset) {
-            buttonY = -kCenterBtnYOffset;
-            buttonH = kSuperViewH + kCenterBtnYOffset;
-            buttonW = kCenterItemWidth;
+            buttonY = -FUCenterBtnYOffset;
+            buttonH = FUSuperViewH + FUCenterBtnYOffset;
+            buttonW = FUCenterItemWidth;
         } else
         {
             buttonY = 0;
             buttonW = buttonEvenW;
-            buttonH = kSuperViewH;
+            buttonH = FUSuperViewH;
         }
         
         CGFloat buttonX = buttonEvenW * i + (buttonEvenW - buttonW) * 0.5;
@@ -166,11 +183,11 @@
     }
     
     //中心按钮(模态)
-    CGFloat centerX = kSuperViewW * 0.5 - (buttonEvenW / 2) * (tabBarButtonCount % 2);
-    CGFloat centerY = self.isOffset ?  self.plusButton.frame.size.height / 2 - kCenterBtnYOffset : kSuperViewH * 0.5;
+    CGFloat centerX = FUSuperViewW * 0.5 - (buttonEvenW / 2) * (tabBarButtonCount % 2);
+    CGFloat centerY = self.isOffset ?  self.plusButton.frame.size.height / 2 - FUCenterBtnYOffset : FUSuperViewH * 0.5;
     if (tabBarButtonCount % 2)
         self.plusButton.center = CGPointMake(centerX, centerY);
     else
-        self.plusButton.center = CGPointMake(kSuperViewW * 0.5, centerY);
+        self.plusButton.center = CGPointMake(FUSuperViewW * 0.5, centerY);
 }
 @end

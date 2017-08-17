@@ -3,8 +3,25 @@
 //  QunBao
 //
 //  Created by fujunzhi on 16/11/3.
-//  Copyright © 2016年 QunBao. All rights reserved.
+//  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 #import "FUTabBarController.h"
 #import "FUTabBarHeader.h"
@@ -46,12 +63,12 @@
  */
 - (void)setupTabBar {
     FUTabBar *myTabBar = [[FUTabBar alloc] initWithFrame:self.tabBar.bounds];
-    myTabBar.backgroundColor = kTabBarBgColor;
+    myTabBar.backgroundColor = FUTabBarBgColor;
     myTabBar.delegate = self;
     [self.tabBar addSubview:myTabBar];
     [self.tabBar bringSubviewToFront:myTabBar];
     self.myTabBar = myTabBar;
-    self.tabBar.touchAreaInsets = UIEdgeInsetsMake(kCenterBtnYOffset, 0, 0, 0);
+    self.tabBar.touchAreaInsets = UIEdgeInsetsMake(FUCenterBtnYOffset, 0, 0, 0);
     
     // KVO 监听属性改变(tabBar的切换)
     [self addObserver:self forKeyPath:@"selectedIndex" options:NSKeyValueObservingOptionNew context:nil];
@@ -123,11 +140,25 @@
     return naVc;
 }
 
-
-
 #pragma mark - <FUTabBarDelegate>
 //监听 tabBar按钮改变
-- (void)tabbar:(FUTabBar *)tabBar didSelectedButtonFrom:(NSInteger)from to:(NSInteger)to {
+- (void)tabbarAnimationView:(UIView *)view didSelectedButtonFrom:(NSInteger)from to:(NSInteger)to
+{
+    //添加动画
+    //ps:可以自己自定义相应的动画
+    switch (_selectAnimation) {
+        case TabBarSelectAnimationDefault:
+            break;
+        case TabBarSelectAnimationScale:
+            [view addScaleAnimation];
+            break;
+        case TabBarSelectAnimationRotate:
+            [view addRotateAnimation];
+            break;
+        default:
+            break;
+    }
+    
     _observeTag = NO; //防止KVO执行多次
     self.selectedIndex = to - FUTabBarTag;
     _observeTag = YES;
@@ -138,6 +169,14 @@
 
 ////中心按钮点击事件
 //- (void)tabBarDidClickedCenterButton:(FUTabBar *)tabBar
+//{
+//    /**
+//     *  子类去实现
+//     */
+//}
+
+////添加子视图控制器
+//- (void) setUpChildControllers
 //{
 //    /**
 //     *  子类去实现
@@ -158,6 +197,14 @@
     self.tabBar.hidden = NO;
 }
 
+/**
+ *  解决自己定义的tabbar在iOS8 中重叠的情况.在iOS8 是允许动态添加tabbaritem的
+ */
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self hideTabBarSubViews];
+}
+
 
 - (void) hideTabBarSubViews
 {
@@ -169,17 +216,6 @@
     }];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self hideTabBarSubViews];
-//}
 
-////添加子视图控制器
-//- (void) setUpChildControllers
-//{
-//    /**
-//     *  子类去实现
-//     */
-//}
 
 @end

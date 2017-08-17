@@ -1,8 +1,8 @@
 //
-//  FUTabBarButton.h
+//  UIView+FU_Animation.h
 //  QunBao
 //
-//  Created by fujunzhi on 16/1/5.
+//  Created by FJZ on 2017/8/17.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,11 +25,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define kTabBarButtonImageRatio 0.5
-
-@interface FUTabBarButton : UIButton
-/**
- *  赋值
- */
-@property (nonatomic, strong) UITabBarItem *item;
+@interface UIView (FU_Animation)
+//缩放动画
+- (void)addScaleAnimation;
+//旋转动画
+- (void)addRotateAnimation;
 @end

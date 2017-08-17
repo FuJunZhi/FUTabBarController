@@ -3,8 +3,25 @@
 //  QunBao
 //
 //  Created by fujunzhi on 16/1/5.
-//  Copyright © 2016年 FJZ. All rights reserved.
+//  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 #import "FUTabBarButton.h"
 #import "FUBadgeButton.h"
@@ -40,10 +57,10 @@
         // 文字居中
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         // 字体大小
-        self.titleLabel.font = [UIFont systemFontOfSize:kFontSize];
+        self.titleLabel.font = [UIFont systemFontOfSize:FUFontSize];
         // 文字颜色
-        [self setTitleColor:kTabBarButtonTitleColor forState:UIControlStateNormal];
-        [self setTitleColor:kTabBarButtonSelectedTitleColor forState:UIControlStateSelected];
+        [self setTitleColor:FUTabBarButtonTitleColor forState:UIControlStateNormal];
+        [self setTitleColor:FUTabBarButtonSelectedTitleColor forState:UIControlStateSelected];
         // 添加提醒数字按钮
         FUBadgeButton *badgeButton = [[FUBadgeButton alloc] init];
         //距右、上距离不变
@@ -53,6 +70,12 @@
         
     }
     return self;
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    self.titleLabel.font = [UIFont systemFontOfSize:selected ? FUSelectFontSize : FUFontSize];
 }
 
 //去掉高亮状态

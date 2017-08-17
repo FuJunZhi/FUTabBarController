@@ -12,14 +12,14 @@
 typedef void(^ClickBlock) (void);
 
 #define FUTabBarTag  888888
-#define kSuperViewW  self.frame.size.width
-#define kSuperViewH  self.frame.size.height
-#define kCenterBtnYOffset kCenterItemWidth / 2//中心按钮向上偏移
+#define FUSuperViewW  self.frame.size.width
+#define FUSuperViewH  self.frame.size.height
+#define FUCenterBtnYOffset FUCenterItemWidth / 2//中心按钮向上偏移
 
 @protocol FUTabBarDelegate <NSObject>
 @optional
 //监听 tabBar的点击事件
-- (void)tabbar:(FUTabBar *)tabBar didSelectedButtonFrom:(NSInteger)from to:(NSInteger)to;
+- (void)tabbarAnimationView:(UIView *)tabBar didSelectedButtonFrom:(NSInteger)from to:(NSInteger)to;
 //中心按钮点击事件
 - (void)tabBarDidClickedCenterButton:(FUTabBar *)tabBar;
 
