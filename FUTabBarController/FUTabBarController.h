@@ -39,12 +39,12 @@ typedef NS_ENUM(NSInteger,TabBarSelectAnimation) {
 /**
  *  初始化一个子控制器
  *
- *  @param childVc           需要初始化的子控制器
- *  @param childVc           导航控制器
- *  @param title             标题
- *  @param imageName         图标
- *  @param selectedImageName 选中的图标
- *  @param offset            是否突出偏移
+ *  @param childVc              需要初始化的子控制器
+ *  @param navigationController 导航控制器
+ *  @param title                标题
+ *  @param imageName            图标
+ *  @param selectedImageName    选中的图标
+ *  @param offset               是否突出偏移
  */
 - (UIViewController *)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset;
 
