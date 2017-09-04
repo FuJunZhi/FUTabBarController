@@ -5,7 +5,7 @@
 
 ### CocoaPods
 
-  1. Add `pod 'FUTabBarController', '~> 1.0.2'` to your Podfile.
+  1. Add `pod 'FUTabBarController', '~> 1.0.3'` to your Podfile.
 
   2. Run `pod install` or `pod update`.
 

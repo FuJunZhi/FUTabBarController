@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "FUTabBarController"
-    s.version      = "1.0.2"
+    s.version      = "1.0.3"
     s.summary      = "custom FUTabBar"
     s.homepage     = "https://github.com/FuJunZhi/FUTabBarController"
     s.license      = "MIT"
