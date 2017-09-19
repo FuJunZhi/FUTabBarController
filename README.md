@@ -14,6 +14,7 @@
 
 ### 带动画的效果图
 ![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar.gif)
+
 ![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar1.gif)
 
 ### 根据有无标题、是否凸出有四种效果
