@@ -13,17 +13,15 @@
   4. 具体实现可以看demo`Home->MainTabBarController.m`
 
 ### 带动画的效果图
-<img src="http://i2.bvimg.com/606664/112328df5cbe8bb9.gif" width="30%" height="30%">
-<img src="http://i2.bvimg.com/606664/28311dd96b554409.gif" width="30%" height="30%">
+![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar.gif)
+![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar1.gif)
 
-### 有标题 + 凸出
-<img src="http://p1.bqimg.com/1949/115761d623008b5a.png" width="30%" height="30%">
-### 无标题 + 凸出
-<img src="http://p1.bqimg.com/1949/fa8b0df53bf311f9.png" width="30%" height="30%">
-### 有标题 + 不凸出
-<img src="http://p1.bqimg.com/1949/d940e83b61a32eed.png" width="30%" height="30%">
-### 无标题 + 不凸出
-<img src="http://p1.bqimg.com/1949/0603d24e7556c4ba.png" width="30%" height="30%">
+### 根据有无标题、是否凸出有四种效果
+![效果1](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar2.png)
+![效果2](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar3.png)
+
+![效果3](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar4.png)
+![效果4](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar5.png)
 
 
 ### 父类中提供的方法
