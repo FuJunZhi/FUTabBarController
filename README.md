@@ -17,11 +17,10 @@
 ![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar1.gif)
 
 ### 根据有无标题、是否凸出有四种效果
-![效果1](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar2.png)
-![效果2](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar3.png)
-
-![效果3](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar4.png)
-![效果4](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar5.png)
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar2.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar3.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar4.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar5.png" width="30%" height="30%">
 
 
 ### 父类中提供的方法
