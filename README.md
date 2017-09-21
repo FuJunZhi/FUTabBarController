@@ -13,15 +13,14 @@
   4. 具体实现可以看demo`Home->MainTabBarController.m`
 
 ### 带动画的效果图
-![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar.gif)
-
-![动画的效果演示](https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar1.gif)
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar.gif" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar1.gif" width="30%" height="30%">
 
 ### 根据有无标题、是否凸出有四种效果
-<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar2.png">
-<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar3.png">
-<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar4.png">
-<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar5.png">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar2.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar3.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar4.png" width="30%" height="30%">
+<img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar5.png" width="30%" height="30%">
 
 
 ### 父类中提供的方法
