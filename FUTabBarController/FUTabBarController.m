@@ -25,7 +25,6 @@
 
 #import "FUTabBarController.h"
 #import <objc/runtime.h>
-#import "ToolboxListMode.h"
 
 @interface FUTabBarController ()
 
@@ -169,10 +168,6 @@
         default:
             break;
     }
-    //change by fjz on 18/4/17添加统计
-    ToolboxItemMode *toolboxItemMode = [ToolboxListMode toolboxItemModeWithIndex:to];
-    if (toolboxItemMode) [SocketJpushMsgTool event:toolboxItemMode.itemPushName];
-    //end
     
     _observeTag = NO; //防止KVO执行多次
     self.selectedIndex = to;
