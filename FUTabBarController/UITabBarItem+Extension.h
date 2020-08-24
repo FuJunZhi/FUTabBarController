@@ -27,4 +27,6 @@
 
 @interface UITabBarItem (Extension)
 @property (assign, nonatomic,getter=isOffset) BOOL offset;
+@property (nonatomic, copy) NSString *netImageName;
+@property (nonatomic, copy) NSString *netSelectedImageName;
 @end

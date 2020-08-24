@@ -2,7 +2,7 @@
 //  UIView+FU_Animation.h
 //  QunBao
 //
-//  Created by FJZ on 2017/8/17.
+//  Created by fujunzhi on 2017/8/17.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -24,8 +24,8 @@
 //  THE SOFTWARE.
 
 #import "FUTabBarController.h"
-#import "FUTabBarHeader.h"
-
+#import <objc/runtime.h>
+#import "ToolboxListMode.h"
 
 @interface FUTabBarController ()
 
@@ -41,21 +41,29 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _myTabBar.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SHOULD_HIDE_MAIN_TABBAR object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SHOULD_SHOW_MAIN_TABBAR object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FUTabBarController_ItemTitleChange" object:nil];
     [self removeObserver:self forKeyPath:@"selectedIndex" context:nil];
-    [self removeObserver:self forKeyPath:@"viewControllers" context:nil];
+//    [self removeObserver:self forKeyPath:@"viewControllers" context:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar:) name:SHOULD_HIDE_MAIN_TABBAR object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTabBar:) name:SHOULD_SHOW_MAIN_TABBAR object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemTitleChange:) name:@"FUTabBarController_ItemTitleChange" object:nil];
     //初始化 tabbar
     [self setupTabBar];
     
 //    //管理子视图控制器
 //    [self setUpChildControllers];
+    
+    //add by fjz on 17/9/15 主题
+    self.fu_Theme.fu_ThemeChangeConfig(^(NSString *currentTheme, NSString *notiName) {
+        self.myTabBar.backgroundColor = [UIColor fu_ThemeColorName:@"Mine.Tab_Bar_BGColor"];
+    });
 }
 
 /**
@@ -72,7 +80,7 @@
     
     // KVO 监听属性改变(tabBar的切换)
     [self addObserver:self forKeyPath:@"selectedIndex" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self forKeyPath:@"viewControllers" options:NSKeyValueObservingOptionNew context:nil];
+//    [self addObserver:self forKeyPath:@"viewControllers" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 
@@ -82,29 +90,23 @@
  *
  *  ＃添加中心按钮（特殊样式、Modal...）
  */
-- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block;
+- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(FUClickBlock)block;
 {
     [self.myTabBar addCenterBtnWithIcon:[UIImage imageNamed:iconName] selectedIcon:[UIImage imageNamed:selectedIconName] title:title offset:offset clickBlock:block];
-}
-
-
-//传递tabBarItem
-- (void)transmitTabBarItem
-{
-    for (UIViewController *subViewControllview in self.viewControllers) {
-        [self.myTabBar addTabBarButtonWithItem:subViewControllview.tabBarItem];
-    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"selectedIndex"] && _observeTag) {
         [self.myTabBar selectedButtonWithIndex:[change[@"new"] intValue]];
-    } else if ([keyPath isEqualToString:@"viewControllers"])
-    {
-        //传递 tabBarItem
-        [self transmitTabBarItem];
     }
+//    if ([keyPath isEqualToString:@"viewControllers"])
+//    {
+//        //传递 tabBarItem
+//        for (UIViewController *subViewControllview in self.viewControllers) {
+//            [self.myTabBar addTabBarButtonWithItem:subViewControllview.tabBarItem];
+//        }
+//    }
 }
 
 
@@ -119,25 +121,34 @@
  *  @param selectedImageName      选中的图标
  *  @param offset                 是否突出偏移
  */
-- (UIViewController *)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset
+- (void)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset
 {
     // 1.设置控制器的属性
     childVc.title = title;
-    // 设置图标
-    childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     childVc.tabBarItem.offset = offset;
+    // 设置图标
+    if (FUIsNetworkImage(imageName))
+        childVc.tabBarItem.netImageName = imageName;
+    else
+        childVc.tabBarItem.image = [UIImage imageNamed:imageName];
+    
     // 设置选中的图标
-    UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
-    if (iOS7) {
-        childVc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    } else {
-        childVc.tabBarItem.selectedImage = selectedImage;
+    if (FUIsNetworkImage(selectedImageName))
+        childVc.tabBarItem.netSelectedImageName = selectedImageName;
+    else
+    {
+        UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
+        if (iOS7) {
+            childVc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        } else {
+            childVc.tabBarItem.selectedImage = selectedImage;
+        }
     }
+    //2.添加tabbar按钮
+    [self.myTabBar addTabBarButtonWithItem:childVc.tabBarItem];
     
-    // 2.包装一个导航控制器
-    UINavigationController *naVc = [[navigationController alloc] initWithRootViewController:childVc];
-    
-    return naVc;
+    //添加子控制器
+    [self addChildViewController:navigationController ? [[navigationController alloc] initWithRootViewController:childVc] : childVc];
 }
 
 #pragma mark - <FUTabBarDelegate>
@@ -158,9 +169,13 @@
         default:
             break;
     }
+    //change by fjz on 18/4/17添加统计
+    ToolboxItemMode *toolboxItemMode = [ToolboxListMode toolboxItemModeWithIndex:to];
+    if (toolboxItemMode) [SocketJpushMsgTool event:toolboxItemMode.itemPushName];
+    //end
     
     _observeTag = NO; //防止KVO执行多次
-    self.selectedIndex = to - FUTabBarTag;
+    self.selectedIndex = to;
     _observeTag = YES;
     
     //删除自带tabBarButton
@@ -197,6 +212,11 @@
     self.tabBar.hidden = NO;
 }
 
+- (void)itemTitleChange:(NSNotification *)noti
+{
+    [self hideTabBarSubViews];
+}
+
 /**
  *  解决自己定义的tabbar在iOS8 中重叠的情况.在iOS8 是允许动态添加tabbaritem的
  */
@@ -215,7 +235,118 @@
         }
     }];
 }
+@end
+
+@implementation UIViewController (FUViewController)
+
+- (void)setHidesFUTabBarWhenPushed:(BOOL)hidesFUTabBarWhenPushed
+{
+    objc_setAssociatedObject(self, @selector(isHidesFUTabBarWhenPushed), @(hidesFUTabBarWhenPushed) , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isHidesFUTabBarWhenPushed
+{
+    return self ? [objc_getAssociatedObject(self, _cmd) boolValue] : NO;
+}
+
+
+- (void)setShowCloseBtn:(BOOL)showCloseBtn
+{
+    objc_setAssociatedObject(self, @selector(isShowCloseBtn), @(showCloseBtn) , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isShowCloseBtn
+{
+    return self.pushNumber > 1;
+}
+
+
+- (void)setPushNumber:(NSInteger)pushNumber
+{
+    objc_setAssociatedObject(self, @selector(pushNumber), @(pushNumber), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSInteger)pushNumber
+{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+
+
+@end
+
+@implementation UINavigationController (FUNavigationController)
+
++(void)load{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        NSArray *selStringsArray = @[@"pushViewController:animated:"];
+        
+        [selStringsArray enumerateObjectsUsingBlock:^(NSString *selString, NSUInteger idx, BOOL *stop) {
+            
+            NSString *fuSelString = [@"fu_" stringByAppendingString:selString];
+            Method fuMethod = class_getInstanceMethod(self, NSSelectorFromString(fuSelString));
+            Method originalMethod = class_getInstanceMethod(self, NSSelectorFromString(selString));
+            if (!class_addMethod([self class], NSSelectorFromString(fuSelString), method_getImplementation(fuMethod), method_getTypeEncoding(fuMethod))) {
+                method_exchangeImplementations(originalMethod, fuMethod);
+            }
+            
+        }];
+        
+    });
+}
+
+- (void)fu_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    viewController.pushNumber = self.viewControllers.count;
+    __block BOOL hidesBottomBarWhenPushed = NO;
+    [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isHidesFUTabBarWhenPushed) {
+            hidesBottomBarWhenPushed = YES;
+            *stop = YES;
+        }
+    }];
+    viewController.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed;
+    [self fu_pushViewController:viewController animated:animated];
+}
+
+
+@end
 
 
 
+@implementation NSObject (RemoveObserver)
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray *selStringsArray = @[@"removeObserver:forKeyPath:",
+                                     @"removeObserver:forKeyPath:context:"];
+        [selStringsArray enumerateObjectsUsingBlock:^(NSString *selString, NSUInteger idx, BOOL *stop) {
+            NSString *fuSelString = [@"fu_" stringByAppendingString:selString];
+            Method fuMethod = class_getInstanceMethod(self, NSSelectorFromString(fuSelString));
+            Method originalMethod = class_getInstanceMethod(self, NSSelectorFromString(selString));
+            if (!class_addMethod([self class], NSSelectorFromString(fuSelString), method_getImplementation(fuMethod), method_getTypeEncoding(fuMethod))) {
+                method_exchangeImplementations(originalMethod, fuMethod);
+            }
+        }];
+    });
+}
+
+- (void)fu_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
+{
+    @try {
+        [self fu_removeObserver:observer forKeyPath:keyPath];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
+}
+
+- (void)fu_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context
+{
+    @try {
+        [self fu_removeObserver:observer forKeyPath:keyPath context:context];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
+}
 @end

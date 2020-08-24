@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FUTabBarHeader.h"
 @class FUTabBar;
 
-typedef void(^ClickBlock) (void);
+typedef void(^FUClickBlock) (void);
 
 #define FUTabBarTag  888888
 #define FUSuperViewW  self.frame.size.width
@@ -30,7 +31,7 @@ typedef void(^ClickBlock) (void);
 
 //接收 item创建 tabBarButton
 - (void)addTabBarButtonWithItem:(UITabBarItem *)item;
-- (void)addCenterBtnWithIcon:(UIImage *)icon selectedIcon:(UIImage *)selected title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block;
+- (void)addCenterBtnWithIcon:(UIImage *)icon selectedIcon:(UIImage *)selected title:(NSString *)title offset:(BOOL)offset clickBlock:(FUClickBlock)block;
 
 //设置tabBar的选中索引
 - (void)selectedButtonWithIndex:(int)index;

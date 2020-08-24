@@ -24,13 +24,9 @@
 //  THE SOFTWARE.
 
 #import "FUTabBarButton.h"
-#import "FUBadgeButton.h"
 #import "FUTabBarHeader.h"
-
-
-
-
-
+#import "FUBadgeButton.h"
+#import "UIButton+WebCache.h"
 @interface FUTabBarButton()
 /**
  *  提醒数字
@@ -58,6 +54,7 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         // 字体大小
         self.titleLabel.font = [UIFont systemFontOfSize:FUFontSize];
+        
         // 文字颜色
         [self setTitleColor:FUTabBarButtonTitleColor forState:UIControlStateNormal];
         [self setTitleColor:FUTabBarButtonSelectedTitleColor forState:UIControlStateSelected];
@@ -110,6 +107,7 @@
     
     _item = item;
     // KVO 监听属性改变
+    DLog(@"%d--%@",item.isOffset,item.netImageName);
     [item addObserver:self forKeyPath:@"badgeValue" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
@@ -127,14 +125,20 @@
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    if (![self.currentTitle isEqualToString:self.item.title]) [[NSNotificationCenter defaultCenter] postNotificationName:@"FUTabBarController_ItemTitleChange" object:nil];
     // 设置文字
     [self setTitle:self.item.title forState:UIControlStateSelected];
     [self setTitle:self.item.title forState:UIControlStateNormal];
     
     // 设置图片
-    [self setImage:self.item.image forState:UIControlStateNormal];
-    [self setImage:self.item.selectedImage forState:UIControlStateSelected];
-    
+    if (stringIsNotEmpty(self.item.netImageName))
+        [self sd_setImageWithURL:[NSURL URLWithString:self.item.netImageName] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"tool_nor"]];
+    else
+        [self setImage:self.item.image forState:UIControlStateNormal];
+    if (stringIsNotEmpty(self.item.netSelectedImageName))
+        [self sd_setImageWithURL:[NSURL URLWithString:self.item.netSelectedImageName] forState:UIControlStateSelected placeholderImage:[UIImage imageNamed:@"tool"]];
+    else
+        [self setImage:self.item.selectedImage forState:UIControlStateSelected];
     // 设置提醒数字
     self.badgeButton.badgeValue = self.item.badgeValue;
 }
@@ -144,7 +148,7 @@
     [super layoutSubviews];
     // 设置提醒数字的位置
     CGFloat badgeY = 2;
-    CGFloat badgeX = self.center.x;
+    CGFloat badgeX = self.bounds.size.width / 2;
     CGRect badgeF = self.badgeButton.frame;
     badgeF.origin.x = badgeX;
     badgeF.origin.y = badgeY;

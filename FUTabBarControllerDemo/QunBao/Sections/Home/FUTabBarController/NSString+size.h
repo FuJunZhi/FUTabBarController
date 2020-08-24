@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
 @interface NSString (size)
 //获取字符串的大小size

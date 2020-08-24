@@ -23,7 +23,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 #import "UITabBarItem+Extension.h"
 #import <objc/runtime.h>
 const NSString *UITabBarItem_Extension_Key = @"UITabBarItem+Extension";
@@ -31,11 +30,29 @@ const NSString *UITabBarItem_Extension_Key = @"UITabBarItem+Extension";
 @implementation UITabBarItem (Extension)
 - (void)setOffset:(BOOL)offset
 {
-    objc_setAssociatedObject(self, &UITabBarItem_Extension_Key, @(offset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(isOffset), @(offset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)isOffset
 {
-    return [objc_getAssociatedObject(self, &UITabBarItem_Extension_Key) boolValue];
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setNetImageName:(NSString *)netImageName
+{
+    if(self && netImageName) objc_setAssociatedObject(self, @selector(netImageName), netImageName , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSString *)netImageName
+{
+   return self ? objc_getAssociatedObject(self, _cmd) :  @"";
+}
+
+- (void)setNetSelectedImageName:(NSString *)netSelectedImageName
+{
+    if(self && netSelectedImageName) objc_setAssociatedObject(self, @selector(netSelectedImageName), netSelectedImageName , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSString *)netSelectedImageName
+{
+   return self ? objc_getAssociatedObject(self, _cmd) :  @"";
 }
 @end

@@ -1,8 +1,8 @@
 //
-//  UIView+TouchAreaInsets.m
+//  UIImage+fExtension.h
 //  QunBao
 //
-//  Created by fujunzhi on 16/11/3.
+//  Created by fujunzhi on 16/11/4.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,36 +23,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <objc/runtime.h>
-#import "UIView+TouchAreaInsets.h"
+#import <UIKit/UIKit.h>
 
-@implementation UIView (TouchAreaInsets)
-
-- (UIEdgeInsets)touchAreaInsets
-{
-    return [objc_getAssociatedObject(self, @selector(touchAreaInsets)) UIEdgeInsetsValue];
-}
-
+@interface UIImage (fExtension)
 /**
- *  设置按钮额外热区
- *
- *  @param touchAreaInsets <#touchAreaInsets description#>
+ *  返回一张自由拉伸的图片
  */
-- (void)setTouchAreaInsets:(UIEdgeInsets)touchAreaInsets
-{
-    NSValue *value = [NSValue valueWithUIEdgeInsets:touchAreaInsets];
-    objc_setAssociatedObject(self, @selector(touchAreaInsets), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
-{
-    UIEdgeInsets touchAreaInsets = self.touchAreaInsets;
-    CGRect bounds = self.bounds;
-    bounds = CGRectMake(bounds.origin.x - touchAreaInsets.left,
-                        bounds.origin.y - touchAreaInsets.top,
-                        bounds.size.width + touchAreaInsets.left + touchAreaInsets.right,
-                        bounds.size.height + touchAreaInsets.top + touchAreaInsets.bottom);
-    return CGRectContainsPoint(bounds, point);
-}
-
++ (UIImage *)resizedImageWithName:(NSString *)name;
 @end

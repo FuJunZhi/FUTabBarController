@@ -25,6 +25,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FUTabBar.h"
+#define FUIsNetworkImage(imageFile) ([imageFile hasPrefix:@"http"] || [imageFile hasPrefix:@"https"])
 
 typedef NS_ENUM(NSInteger,TabBarSelectAnimation) {
     TabBarSelectAnimationDefault = 0, //无动画
@@ -46,9 +47,21 @@ typedef NS_ENUM(NSInteger,TabBarSelectAnimation) {
  *  @param selectedImageName    选中的图标
  *  @param offset               是否突出偏移
  */
-- (UIViewController *)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset;
+- (void)setupChildViewController:(UIViewController *)childVc navigationController:(Class)navigationController title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName offset:(BOOL)offset;
 
 //添加中心按钮：特殊样式、Modal...（子类调用）
-- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block;
+- (void)addCenterItemWithIcon:(NSString *)iconName selectedIcon:(NSString *)selectedIconName title:(NSString *)title offset:(BOOL)offset clickBlock:(FUClickBlock)block;
 
+@end
+
+@interface UIViewController (FUViewController)
+//跳转时隐藏tabbar
+@property (nonatomic, assign,getter=isHidesFUTabBarWhenPushed) BOOL hidesFUTabBarWhenPushed;
+//跳转次数
+@property (nonatomic, assign) NSInteger pushNumber;
+@property (nonatomic, assign,getter=isShowCloseBtn) BOOL showCloseBtn;
+@end
+
+
+@interface NSObject (RemoveObserver)
 @end

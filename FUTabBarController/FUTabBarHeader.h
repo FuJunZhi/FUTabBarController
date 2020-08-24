@@ -28,9 +28,8 @@
 #define FUTabBarHeader_h
 
 #endif /* FUTabBarHeader_h */
-
-#import "UIView+TouchAreaInsets.h"
 #import "UITabBarItem+Extension.h"
+#import "UIView+TouchAreaInsets.h"
 #import "NSString+size.h"
 #import "UIView+FU_Animation.h"
 
@@ -39,8 +38,8 @@
 #define FUSelectFontSize 13//选中字体大小
 #define FUCenterItemWidth 60 //centerButton W
 #define FUTabBarButtonTitleColor [UIColor lightGrayColor]//StateNormal
-#define FUTabBarButtonSelectedTitleColor [UIColor blackColor]//StateSelected
-#define FUTabBarBgColor [UIColor whiteColor]
+#define FUTabBarButtonSelectedTitleColor kNavColor//StateSelected
+#define FUTabBarBgColor UIColorFromHex(@"#F8FCFF")
 
 //主界面隐藏tabbar通知
 #define SHOULD_HIDE_MAIN_TABBAR             @"should hide main tabbar"

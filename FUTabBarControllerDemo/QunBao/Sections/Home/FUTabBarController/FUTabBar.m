@@ -25,11 +25,10 @@
 
 #import "FUTabBar.h"
 #import "FUTabBarButton.h"
-#import "FUTabBarHeader.h"
 
 @interface FUTabBar ()
 {
-    ClickBlock _clickBlock;
+    FUClickBlock _clickBlock;
 }
 /**
  *  存储创建的 tabBarButton
@@ -59,7 +58,7 @@
 }
 
 
-- (void)addCenterBtnWithIcon:(UIImage *)icon selectedIcon:(UIImage *)selected title:(NSString *)title offset:(BOOL)offset clickBlock:(ClickBlock)block
+- (void)addCenterBtnWithIcon:(UIImage *)icon selectedIcon:(UIImage *)selected title:(NSString *)title offset:(BOOL)offset clickBlock:(FUClickBlock)block
 {
     _offset = offset;
     _clickBlock = block;
@@ -110,10 +109,9 @@
 //监听事件
 - (void)buttonClick:(FUTabBarButton *)button
 {
-    
     if (self.delegate && [self.delegate respondsToSelector:@selector(tabbarAnimationView:didSelectedButtonFrom:to:)])
     {
-        [self.delegate tabbarAnimationView:button.imageView didSelectedButtonFrom:self.selectedButton.tag to:button.tag];
+        [self.delegate tabbarAnimationView:button.imageView didSelectedButtonFrom:MAX(0, self.selectedButton.tag - FUTabBarTag) to:MAX(0, button.tag - FUTabBarTag)];
     }
     
     self.selectedButton.selected = NO;
@@ -160,6 +158,7 @@
     {
         //取出按钮
         FUTabBarButton *button = self.tabBarButtons[i];
+        button.backgroundColor = FUTabBarBgColor;
         if (button.item.isOffset) {
             buttonY = -FUCenterBtnYOffset;
             buttonH = FUSuperViewH + FUCenterBtnYOffset;
