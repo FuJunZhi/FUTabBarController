@@ -32,6 +32,7 @@
 #import "UIView+TouchAreaInsets.h"
 #import "NSString+size.h"
 #import "UIView+FU_Animation.h"
+#import "UIColor+FUFoundation.h"
 
 //tabBarItem配置
 #define FUFontSize 11 //默认文字的大小

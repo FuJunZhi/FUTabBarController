@@ -27,6 +27,33 @@
 #import <objc/runtime.h>
 const NSString *UITabBarItem_Extension_Key = @"UITabBarItem+Extension";
 
+BOOL stringIsNotEmpty (NSString * str)
+{
+    if (str == nil || str == NULL)
+    {
+        return YES;
+    }
+    if ([str isKindOfClass:[NSNull class]])
+    {
+        return YES;
+    }
+    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+BOOL stringIsEmpty (NSString * str)
+{
+    return ! stringIsNotEmpty(str);
+}
+
+NSString* replaceNullValue (id str)
+{
+    return stringIsEmpty(str) ? @"" : [NSString stringWithFormat:@"%@",str];
+}
+
 @implementation UITabBarItem (Extension)
 - (void)setOffset:(BOOL)offset
 {
@@ -44,7 +71,7 @@ const NSString *UITabBarItem_Extension_Key = @"UITabBarItem+Extension";
 }
 - (NSString *)netImageName
 {
-   return self ? objc_getAssociatedObject(self, _cmd) :  @"";
+   return self ? replaceNullValue(objc_getAssociatedObject(self, _cmd)) :  @"";
 }
 
 - (void)setNetSelectedImageName:(NSString *)netSelectedImageName
@@ -53,6 +80,6 @@ const NSString *UITabBarItem_Extension_Key = @"UITabBarItem+Extension";
 }
 - (NSString *)netSelectedImageName
 {
-   return self ? objc_getAssociatedObject(self, _cmd) :  @"";
+   return self ? replaceNullValue(objc_getAssociatedObject(self, _cmd)) :  @"";
 }
 @end

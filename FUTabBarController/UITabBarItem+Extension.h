@@ -23,8 +23,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+BOOL stringIsNotEmpty (NSString * str);
+BOOL stringIsEmpty (NSString * str);
+NSString* replaceNullValue (id str);
 
+#import <UIKit/UIKit.h>
 @interface UITabBarItem (Extension)
 @property (assign, nonatomic,getter=isOffset) BOOL offset;
 @property (nonatomic, copy) NSString *netImageName;

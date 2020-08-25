@@ -27,6 +27,7 @@
 #import "FUTabBarHeader.h"
 #import "FUBadgeButton.h"
 #import "UIButton+WebCache.h"
+
 @interface FUTabBarButton()
 /**
  *  提醒数字
@@ -107,7 +108,6 @@
     
     _item = item;
     // KVO 监听属性改变
-    DLog(@"%d--%@",item.isOffset,item.netImageName);
     [item addObserver:self forKeyPath:@"badgeValue" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
@@ -154,13 +154,5 @@
     badgeF.origin.y = badgeY;
     self.badgeButton.frame = badgeF;
 }
-
-
-
-
-
-
-
-
 @end
 

@@ -12,10 +12,6 @@
 @interface MainSingleton : NSObject
 + (instancetype) defaultSingleton;
 
-//字符串是否为空
-BOOL stringIsNotEmpty (NSString * str);
-BOOL stringIsEmpty (NSString * str);
-
 //时间转换
 - (NSString *) dateToString:(NSDate *)date;
 - (NSDate *) stringToDate:(NSString *)dateStr;

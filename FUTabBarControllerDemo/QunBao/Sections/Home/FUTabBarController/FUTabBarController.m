@@ -58,11 +58,6 @@
     
 //    //管理子视图控制器
 //    [self setUpChildControllers];
-    
-    //add by fjz on 17/9/15 主题
-    self.fu_Theme.fu_ThemeChangeConfig(^(NSString *currentTheme, NSString *notiName) {
-        self.myTabBar.backgroundColor = [UIColor fu_ThemeColorName:@"Mine.Tab_Bar_BGColor"];
-    });
 }
 
 /**

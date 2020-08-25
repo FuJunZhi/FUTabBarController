@@ -19,29 +19,6 @@
     return mainSingleton;
 }
 
-#pragma mark - 是否为空
-BOOL stringIsNotEmpty (NSString * str)
-{
-    if (str == nil || str == NULL)
-    {
-        return YES;
-    }
-    if ([str isKindOfClass:[NSNull class]])
-    {
-        return YES;
-    }
-    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        return YES;
-    }
-    return NO;
-}
-
-BOOL stringIsEmpty (NSString * str)
-{
-    return ! stringIsNotEmpty(str);
-}
-
 #pragma mark - 计算时间间隔
 - (NSString *) intervalFromLastDate: (NSString *) dateString1 toTheDate:(NSString *) dateString2
 {

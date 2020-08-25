@@ -1,0 +1,6 @@
+framework module Pods_QunBao {
+  umbrella header "Pods-QunBao-umbrella.h"
+
+  export *
+  module * { export * }
+}

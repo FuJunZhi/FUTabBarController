@@ -42,7 +42,7 @@
     //宝信
     UIStoryboard *baoXinStB = [UIStoryboard storyboardWithName:@"BaoXunViewController" bundle:nil];
     BaoXunViewController *baoXinVC = [baoXinStB instantiateViewControllerWithIdentifier:@"BaoXunViewController"];
-    [self setupChildViewController:baoXinVC navigationController:[MainNavController class] title:@"宝信" imageName:@"baoxin_nomal.png" selectedImageName:@"baoxin_select.png" offset:NO];
+    [self setupChildViewController:baoXinVC navigationController:[MainNavController class] title:@"宝信" imageName:@"msg_nomal.png" selectedImageName:@"msg_select.png" offset:NO];
     
     //我的
     UIStoryboard *mineStB = [UIStoryboard storyboardWithName:@"MineViewController" bundle:nil];
@@ -50,16 +50,14 @@
     [self setupChildViewController:mineVC navigationController:[MainNavController class] title:@"我的" imageName:@"mine_nomal.png" selectedImageName:@"mine_select.png" offset:NO];
     
     //添加动画
-//    self.selectAnimation = TabBarSelectAnimationScale;
+    self.selectAnimation = TabBarSelectAnimationScale;
     
     //添加中心按钮
     __weak typeof(self) weakSelf = self;
     [self addCenterItemWithIcon:@"search_nomal" selectedIcon:@"search_nomal" title:@"搜索" offset:YES clickBlock:^{
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"SearchViewController" bundle:nil];
-        SearchViewController *searchVC= [board instantiateViewControllerWithIdentifier:@"SearchViewController"];
-        UIViewController *searchNVC = [weakSelf setupChildViewController:searchVC navigationController:[MainNavController class] title:@"我的" imageName:@"" selectedImageName:@"" offset:NO];
-        
-        [weakSelf presentViewController:searchNVC animated:YES completion:nil];
+        SearchViewController *searchVC = [board instantiateViewControllerWithIdentifier:@"SearchViewController"];
+        [weakSelf presentViewController:[[MainNavController alloc] initWithRootViewController:searchVC] animated:YES completion:nil];
     }];
     
     
