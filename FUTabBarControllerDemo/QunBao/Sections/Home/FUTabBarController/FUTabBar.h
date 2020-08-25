@@ -1,6 +1,6 @@
 //
 //  FUTabBar.h
-//  QunBao
+//  FUTabBarController
 //
 //  Created by fujunzhi on 16/1/5.
 //  Copyright © 2016年 FJZ. All rights reserved.

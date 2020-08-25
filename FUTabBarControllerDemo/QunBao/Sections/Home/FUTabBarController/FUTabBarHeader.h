@@ -1,7 +1,7 @@
 
 //
 //  FUTabBarHeader.h
-//  QunBao
+//  FUTabBarController
 //
 //  Created by fujunzhi on 2017/1/17.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)

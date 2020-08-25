@@ -1,6 +1,6 @@
 //
 //  FUBadgeButton.h
-//  QunBao
+//  FUTabBarController
 //
 //  Created by fujunzhi on 16/1/5.
 //  Copyright (c) 2016 FUTabBarController (https://github.com/FuJunZhi/FUTabBarController.git)

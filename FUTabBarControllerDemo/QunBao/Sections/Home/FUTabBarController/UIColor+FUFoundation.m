@@ -1,6 +1,6 @@
 //
 //  UIColor+FUFoundation.m
-//  YtoCustomService
+//  FUTabBarController
 //
 //  Created by fujunzhi on 2017/6/14.
 //  Copyright © 2017年 FJZ. All rights reserved.
