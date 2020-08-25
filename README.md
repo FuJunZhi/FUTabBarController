@@ -76,19 +76,16 @@ UIStoryboard *mineStB = [UIStoryboard storyboardWithName:@"MineViewController" b
 MineViewController *mineVC = [mineStB instantiateViewControllerWithIdentifier:@"MineViewController"];
 [self setupChildViewController:mineVC navigationController:[MainNavController class] title:@"我的" imageName:@"mine_nomal.png" selectedImageName:@"mine_select.png" offset:NO];
 
-//添加中心按钮（只适用于中心按钮模态弹出）
-//offset:是否凸出
+//添加动画
+self.selectAnimation = TabBarSelectAnimationScale;
+
+//添加中心按钮
 __weak typeof(self) weakSelf = self;
 [self addCenterItemWithIcon:@"search_nomal" selectedIcon:@"search_nomal" title:@"搜索" offset:YES clickBlock:^{
-UIStoryboard *board = [UIStoryboard storyboardWithName:@"SearchViewController" bundle:nil];
-SearchViewController *searchVC= [board instantiateViewControllerWithIdentifier:@"SearchViewController"];
-UIViewController *searchNVC = [weakSelf setupChildViewController:searchVC navigationController:[MainNavController class] title:@"我的" imageName:@"" selectedImageName:@"" offset:NO];
-
-[weakSelf presentViewController:searchNVC animated:YES completion:nil];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"SearchViewController" bundle:nil];
+    SearchViewController *searchVC = [board instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    [weakSelf presentViewController:[[MainNavController alloc] initWithRootViewController:searchVC] animated:YES completion:nil];
 }];
-
-
-}
 
 @end
 ```
