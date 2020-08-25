@@ -39,7 +39,7 @@
 #define FUSelectFontSize 13//选中字体大小
 #define FUCenterItemWidth 60 //centerButton W
 #define FUTabBarButtonTitleColor [UIColor lightGrayColor]//StateNormal
-#define FUTabBarButtonSelectedTitleColor kNavColor//StateSelected
+#define FUTabBarButtonSelectedTitleColor UIColorFromHex(@"#7857e1")//StateSelected
 #define FUTabBarBgColor UIColorFromHex(@"#F8FCFF")
 
 //主界面隐藏tabbar通知
