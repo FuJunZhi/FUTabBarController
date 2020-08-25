@@ -11,6 +11,7 @@
 
   3. 创建UITabBarController自定义类 继承FUTabBarController
   4. 具体实现可以看demo`Home->MainTabBarController.m`
+  
 
 ### 带动画的效果图
 <img src="https://github.com/FuJunZhi/FUResources/blob/master/Images/FUTabar.gif" width="30%" height="30%">
